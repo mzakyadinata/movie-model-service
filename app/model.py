@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import keras
+from tensorflow import keras
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import os
