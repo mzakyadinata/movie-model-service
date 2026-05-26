@@ -11,7 +11,7 @@ MODELS_DIR = os.path.join(BASE_DIR, "models")
 
 EMBEDDINGS_PATH   = os.path.join(MODELS_DIR, "embeddings.npy")
 MOVIES_DATA_PATH  = os.path.join(MODELS_DIR, "movies_data.csv")
-ENCODER_MODEL_PATH = os.path.join(MODELS_DIR, "encoder_model.keras")
+ENCODER_MODEL_PATH = os.path.join(MODELS_DIR, "encoder_model.h5")
 
 # Class MovieRecommender
 class MovieRecommender:
