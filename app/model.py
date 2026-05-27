@@ -21,37 +21,24 @@ class MovieRecommender:
         Constructor — dipanggil SEKALI saat aplikasi pertama start.
         Di sini kita load semua aset yang berat ke memory.
         """
-        print("🔄 Loading SBERT model...")
+        print("Loading SBERT model...")
         self.sbert_model = SentenceTransformer('all-MiniLM-L6-v2')
 
-        print("🔄 Loading TF Encoder model...")
+        print("Loading TF Encoder model...")
         self.encoder_model = keras.models.load_model(ENCODER_MODEL_PATH, compile=False)
 
 
-        print("🔄 Loading pre-computed embeddings & movie data...")
+        print("Loading pre-computed embeddings & movie data...")
         self.embeddings = np.load(EMBEDDINGS_PATH)           
         self.movies_df  = pd.read_csv(MOVIES_DATA_PATH)     
 
-        print(f"✅ Ready! {len(self.movies_df)} films loaded.")
+        print(f"Ready! {len(self.movies_df)} films loaded.")
 
 
-    def encode_synopsis(self, synopsis: str) -> np.ndarray:
-        """
-        STEP 1 + 2: Ubah teks sinopsis menjadi vektor 64 dimensi.
-
-        Args:
-            synopsis: teks sinopsis dari user (string)
-
-        Returns:
-            np.ndarray dengan shape (1, 64)
-        """
-
-        # Step 1: SBERT encoding 
-        sbert_vector = self.sbert_model.encode([synopsis])  
-
-        # Step 2: TF Encoder refinement 
-        encoded_vector = self.encoder_model.predict(sbert_vector, verbose=0) 
-        return encoded_vector 
+    def encode_synopsis(self, synopsis: str) -> np.ndarray:     
+        # SBERT
+        sbert_vector = self.sbert_model.encode([synopsis])  # shape: (1, 384)
+        return sbert_vector
 
 
     def get_recommendations(self, synopsis: str, top_n: int = 5) -> list:
