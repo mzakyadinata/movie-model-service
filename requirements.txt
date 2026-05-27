@@ -3,7 +3,7 @@ uvicorn[standard]==0.30.6
 sentence-transformers==3.0.1
 transformers==4.41.2
 tensorflow==2.16.2
-keras==3.3.3
+keras==3.14.1
 numpy==1.26.4
 pandas==2.2.2
 scikit-learn==1.5.1
